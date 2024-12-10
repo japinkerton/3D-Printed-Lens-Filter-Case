@@ -16,8 +16,9 @@ If you don't know how to use OpenSCAD, don't worry.  The parts you're looking fo
 ## How to Edit
 The build parameters are defined first in the SCAD file.  You only need to worry about the following global variables
 
-|Parameter|Explanation|
 Note: All units are mm.
+
+|Parameter|Explanation|
 |-----|-----|
 |MAX_FILTER_DIAMETER|Overall width of your widest filter.  This is not the size printed on the filter, but rather the measured overall diameter including the filter ring.  This will be used to determine the overall width of the box|
 |MIN_FILTER_DIAMETER|Overall width of your smallest filter.  This can be undersized a bit.  This will be used to determine the height of the internal dividers.|
