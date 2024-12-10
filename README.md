@@ -3,7 +3,7 @@ Open source case for storage of lens filters.
 
 All parts were designed in OpenSCAD for a parametric approach.
 
-If you don't know how to use OpenSCAD, don't worry.  The parts you're looking for are on ([Thingivers](https://www.thingiverse.com/thing:6866168)).
+If you don't know how to use OpenSCAD, don't worry.  The parts you're looking for are on [Thingiverse](https://www.thingiverse.com/thing:6866168).
 
 ## Printing Parameters
 |Parameter|Value|Note|
