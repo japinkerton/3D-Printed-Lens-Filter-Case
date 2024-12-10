@@ -1,6 +1,6 @@
 //BUILD PARAMETERS - ONLY EDIT THIS SECTION
-MAX_FILTER_DIAMETER = 48.25; //Filter Diameters are not the size printed on the filter.  It's the overall diameter of the filter ring
-MIN_FILTER_DIAMETER = 37;
+MAX_FILTER_DIAMETER = 84.5; //Filter Diameters are not the size printed on the filter.  It's the overall diameter of the filter ring
+MIN_FILTER_DIAMETER = 65;
 FILTER_THICKNESSES = [10,10,7,7,7,6,6,6,6,6];
 FILTER_TOLERANCE = 1.5;
 LID_TOLERANCE = .5;
@@ -20,7 +20,7 @@ function addl(list, c = 0) =
 //get sublist 
 function partial(list,start,end) = [for (i = [start:end]) list[i]];
 
-overallLength = (INNER_WALL_THICKNESS + FILTER_TOLERANCE) * len(FILTER_THICKNESSES) + OUTER_WALL_THICKNESS + addl(FILTER_THICKNESSES);
+overallLength = (INNER_WALL_THICKNESS + FILTER_TOLERANCE) * len(FILTER_THICKNESSES) + OUTER_WALL_THICKNESS +(OUTER_WALL_THICKNESS - INNER_WALL_THICKNESS) + addl(FILTER_THICKNESSES);
 overallWidth = MAX_FILTER_DIAMETER + FILTER_TOLERANCE + (2 * OUTER_WALL_THICKNESS);
 overallHeight = MAX_FILTER_DIAMETER + FILTER_TOLERANCE + (2 * OUTER_WALL_THICKNESS);
 $fn=200;
