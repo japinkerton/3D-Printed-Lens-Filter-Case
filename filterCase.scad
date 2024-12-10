@@ -1,12 +1,12 @@
 //BUILD PARAMETERS - ONLY EDIT THIS SECTION
-maxFilterDia = 48.25; //Filter Diameters are not the size printed on the filter.  It's the overall diameter of the filter ring
-minFilterDia = 37;
-filterThicknesses = [10,10,7,7,7,6,6,6,6,6];
-tolerance = 1.5;
-lidTolerance = .5;
-innerWallThickness = 1.5;
-outerWallThickness = 2;
-lidHeight = 10;
+MAX_FILTER_DIAMETER = 48.25; //Filter Diameters are not the size printed on the filter.  It's the overall diameter of the filter ring
+MIN_FILTER_DIAMETER = 37;
+FILTER_THICKNESSES = [10,10,7,7,7,6,6,6,6,6];
+FILTER_TOLERANCE = 1.5;
+LID_TOLERANCE = .5;
+INNER_WALL_THICKNESS = 1.5;
+OUTER_WALL_THICKNESS = 2;
+LID_HEIGHT = 10;
 
 
 //DO NOT EDIT BELOW HERE
@@ -20,52 +20,52 @@ function addl(list, c = 0) =
 //get sublist 
 function partial(list,start,end) = [for (i = [start:end]) list[i]];
 
-overallLength = (innerWallThickness + tolerance) * len(filterThicknesses) + outerWallThickness + addl(filterThicknesses);
-overallWidth = maxFilterDia + tolerance + (2 * outerWallThickness);
-overallHeight = maxFilterDia + tolerance + (2 * outerWallThickness);
+overallLength = (INNER_WALL_THICKNESS + FILTER_TOLERANCE) * len(FILTER_THICKNESSES) + OUTER_WALL_THICKNESS + addl(FILTER_THICKNESSES);
+overallWidth = MAX_FILTER_DIAMETER + FILTER_TOLERANCE + (2 * OUTER_WALL_THICKNESS);
+overallHeight = MAX_FILTER_DIAMETER + FILTER_TOLERANCE + (2 * OUTER_WALL_THICKNESS);
 $fn=200;
 
 difference()
 {
 	cube([overallLength,overallWidth,overallHeight]);
-	translate([outerWallThickness,overallWidth/2,overallHeight])
+	translate([OUTER_WALL_THICKNESS,overallWidth/2,overallHeight])
 	{
 		rotate([0,90,0])
 		{
-			resize([0,overallWidth - outerWallThickness*2,0])
+			resize([0,overallWidth - OUTER_WALL_THICKNESS*2,0])
 			{
-				cylinder(h = overallLength-2*outerWallThickness,r = overallHeight - minFilterDia + tolerance);
+				cylinder(h = overallLength-2*OUTER_WALL_THICKNESS,r = overallHeight - MIN_FILTER_DIAMETER + FILTER_TOLERANCE);
 			}
 		}
 	}
-	for (i = [0:1:len(filterThicknesses)-1])
+	for (i = [0:1:len(FILTER_THICKNESSES)-1])
 	{
 		if(i ==0 )
 		{
-			translate([outerWallThickness,outerWallThickness,outerWallThickness+(maxFilterDia+tolerance)/2])
+			translate([OUTER_WALL_THICKNESS,OUTER_WALL_THICKNESS,OUTER_WALL_THICKNESS+(MAX_FILTER_DIAMETER+FILTER_TOLERANCE)/2])
 			{
-				cube([filterThicknesses[i]+tolerance,maxFilterDia+tolerance,maxFilterDia+tolerance]);
+				cube([FILTER_THICKNESSES[i]+FILTER_TOLERANCE,MAX_FILTER_DIAMETER+FILTER_TOLERANCE,MAX_FILTER_DIAMETER+FILTER_TOLERANCE]);
 				rotate([0,90,0])
 				{
-					translate([0,(maxFilterDia+tolerance)/2,0])
+					translate([0,(MAX_FILTER_DIAMETER+FILTER_TOLERANCE)/2,0])
 					{
-						cylinder(filterThicknesses[i]+tolerance,(maxFilterDia+tolerance)/2,(maxFilterDia+tolerance)/2);
+						cylinder(FILTER_THICKNESSES[i]+FILTER_TOLERANCE,(MAX_FILTER_DIAMETER+FILTER_TOLERANCE)/2,(MAX_FILTER_DIAMETER+FILTER_TOLERANCE)/2);
 					}
 				}
 			}
 		}
 		else
 		{
-			distOffset = addl(partial(filterThicknesses,0,i-1));
-			translate([outerWallThickness+distOffset+(tolerance+innerWallThickness)*i,outerWallThickness,outerWallThickness+(maxFilterDia+tolerance)/2])
+			distOffset = addl(partial(FILTER_THICKNESSES,0,i-1));
+			translate([OUTER_WALL_THICKNESS+distOffset+(FILTER_TOLERANCE+INNER_WALL_THICKNESS)*i,OUTER_WALL_THICKNESS,OUTER_WALL_THICKNESS+(MAX_FILTER_DIAMETER+FILTER_TOLERANCE)/2])
 			union()
 			{
-				cube([filterThicknesses[i]+tolerance,maxFilterDia+tolerance,maxFilterDia+tolerance]);
+				cube([FILTER_THICKNESSES[i]+FILTER_TOLERANCE,MAX_FILTER_DIAMETER+FILTER_TOLERANCE,MAX_FILTER_DIAMETER+FILTER_TOLERANCE]);
 				rotate([0,90,0])
 				{
-					translate([0,(maxFilterDia+tolerance)/2,0])
+					translate([0,(MAX_FILTER_DIAMETER+FILTER_TOLERANCE)/2,0])
 					{
-						cylinder(filterThicknesses[i]+tolerance,(maxFilterDia+tolerance)/2,(maxFilterDia+tolerance)/2);
+						cylinder(FILTER_THICKNESSES[i]+FILTER_TOLERANCE,(MAX_FILTER_DIAMETER+FILTER_TOLERANCE)/2,(MAX_FILTER_DIAMETER+FILTER_TOLERANCE)/2);
 					}
 				}
 			}
@@ -81,10 +81,10 @@ translate([0,overallWidth + 10,0])
 {
 	difference()
 	{
-		cube([overallLength + outerWallThickness + lidTolerance*2,overallWidth + outerWallThickness + lidTolerance*2,lidHeight]);
-		translate([outerWallThickness/2 +lidTolerance/2 ,outerWallThickness/2 +lidTolerance/2,outerWallThickness/2])
+		cube([overallLength + OUTER_WALL_THICKNESS + LID_TOLERANCE*2,overallWidth + OUTER_WALL_THICKNESS + LID_TOLERANCE*2,LID_HEIGHT]);
+		translate([OUTER_WALL_THICKNESS/2 +LID_TOLERANCE/2 ,OUTER_WALL_THICKNESS/2 +LID_TOLERANCE/2,OUTER_WALL_THICKNESS/2])
 		{
-			cube([overallLength+lidTolerance,overallWidth+lidTolerance,overallHeight]);
+			cube([overallLength+LID_TOLERANCE,overallWidth+LID_TOLERANCE,overallHeight]);
 		}
 	}
 }
