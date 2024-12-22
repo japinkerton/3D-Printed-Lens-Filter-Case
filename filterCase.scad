@@ -1,11 +1,27 @@
 //BUILD PARAMETERS - ONLY EDIT THIS SECTION
-MAX_FILTER_DIAMETER = 84.5; //Filter Diameters are not the size printed on the filter.  It's the overall diameter of the filter ring
-MIN_FILTER_DIAMETER = 65;
+
+//Overall width of your widest filter. This is not the size printed on the filter, but rather the measured overall diameter including the filter ring. This will be used to determine the overall width of the box
+MAX_FILTER_DIAMETER = 47.25;
+
+//Overall width of your smallest filter. This can be undersized a bit. This will be used to determine the height of the internal dividers.
+MIN_FILTER_DIAMETER = 36;
+
+//List of thickness of each filter you want to hold. This will define how many slots there are, and how wide they are.
 FILTER_THICKNESSES = [10,10,7,7,7,6,6,6,6,6];
+
+//Gap added around all sides of the filters. This will be added to all of the values above this.
 FILTER_TOLERANCE = 1.5;
+
+//Gap added between the lid and box. This is to compensate for imperfections in the printing process.
 LID_TOLERANCE = .5;
+
+//Thickness of the outer walls including the lid.
 INNER_WALL_THICKNESS = 1.5;
+
+//Thickness of the outer walls including the lid.
 OUTER_WALL_THICKNESS = 2;
+
+//Height of the lid
 LID_HEIGHT = 10;
 
 
@@ -20,7 +36,7 @@ function addl(list, c = 0) =
 //get sublist 
 function partial(list,start,end) = [for (i = [start:end]) list[i]];
 
-overallLength = (INNER_WALL_THICKNESS + FILTER_TOLERANCE) * len(FILTER_THICKNESSES) + OUTER_WALL_THICKNESS +(OUTER_WALL_THICKNESS - INNER_WALL_THICKNESS) + addl(FILTER_THICKNESSES);
+overallLength = (INNER_WALL_THICKNESS + FILTER_TOLERANCE) * len(FILTER_THICKNESSES) + OUTER_WALL_THICKNESS + (OUTER_WALL_THICKNESS - INNER_WALL_THICKNESS) + addl(FILTER_THICKNESSES);
 overallWidth = MAX_FILTER_DIAMETER + FILTER_TOLERANCE + (2 * OUTER_WALL_THICKNESS);
 overallHeight = MAX_FILTER_DIAMETER + FILTER_TOLERANCE + (2 * OUTER_WALL_THICKNESS);
 $fn=200;
