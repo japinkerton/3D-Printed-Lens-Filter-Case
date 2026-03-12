@@ -214,7 +214,7 @@ module buildLid()
 }
 module buildLabels()
 {
-    if(LABEL_ON_SHORT)
+    if(LABEL_ON_SHORT=="yes")
     {
         translate([overallLength-OUTER_WALL_THICK/2,overallWidth/2,overallHeight/2]) rotate([90,0,90])
             linear_extrude(height=LABEL_TEXT_THICK+OUTER_WALL_THICK/2)
@@ -225,7 +225,7 @@ module buildLabels()
             linear_extrude(height=LABEL_TEXT_THICK+OUTER_WALL_THICK/2)
                 text(text=LABEL_TEXT,size=LABEL_TEXT_SIZE,font=LABEL_FONT,halign="center",valign="center");
     }
-    if(LABEL_ON_LONG)
+    if(LABEL_ON_LONG=="yes")
     {
         translate([overallLength/2,OUTER_WALL_THICK/2,overallHeight/2]) rotate([90,0,0])
             linear_extrude(height=LABEL_TEXT_THICK+OUTER_WALL_THICK/2)
